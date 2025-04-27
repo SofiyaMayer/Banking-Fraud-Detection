@@ -57,7 +57,7 @@ close(conn);
 ## 🔍 Key Findings
 
 ### Fraud Distribution
-![Fraud vs Non-Fraud Transactions](graphs_visualization/hist_amounts.jpg)  
+![Fraud vs Non-Fraud Transactions](graphs_visualization/barplot_fraud_vs_nonfraud.jpg)  
 *Figure 1: Only 0.21% of transactions were fraudulent (highly imbalanced dataset)*
 
 ### Transaction Patterns
