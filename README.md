@@ -67,12 +67,34 @@ close(conn);
 | **Dark Web-Linked Cards**| 23.4%           | Stolen card credentials           |
 | **Chip Transactions**    | 1.8%            | Physical card present transactions|
 
-## 🎯 Fraud Detection Performance
+## 🔍 Model Validation Performance (K-Fold CV)
 
-### Core Metrics
-```python
-               Fraud Detected  False Positives  $ Value Caught  $ Value Missed
-              --------------  ---------------  --------------  -------------
-Decision Tree       36.2%          1,214         $264,250       $465,712
-Random Forest       72.8%            893         $531,500       $198,462
-RUSBoost           *92.0%*          *1,507*     *$671,500*      *$58,462*
+### Fraud Detection Metrics
+| Model          | Recall | Precision | FP Rate | F1-Score |
+|----------------|-------:|----------:|--------:|---------:|
+| Decision Tree  | 33.2%  | 38.0%     | 0.096%  | 0.35     |
+| Random Forest  | 44.7%  | 36.8%     | 0.16%   | 0.40     |
+| **RUSBoost**   | **90.9%** | **7.7%** | **2.34%** | **0.14** |
+
+### Confusion Matrices
+![Decision Tree Validation](classification_models/tree_model/validation_matrix.jpg)  
+*Figure 1: Decision Tree (Recall: 33.2%, FP Rate: 0.096%)*
+
+![Random Forest Validation](classification_models/random_forest/validation_matrix.jpg)  
+*Figure 2: Random Forest (Recall: 44.7%, FP Rate: 0.16%)*
+
+![RUSBoost Validation](classification_models/RUSBoosted_ensemble/validation_matrix.jpg)  
+*Figure 3: RUSBoost (Recall: 90.9%, FP Rate: 2.34%)*
+
+## 🚀 Deployment Recommendation
+
+### **Recommended Model: RUSBoosted Ensemble** 
+ *Advantages:*
+
+- Catches 91% of fraud (3× better than Random Forest)
+- Prevents estimated $583,912 in annual fraud losses
+
+ *Limitations:*
+
+- Generates 24,450 false alerts
+
