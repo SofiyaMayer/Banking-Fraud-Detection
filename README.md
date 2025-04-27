@@ -13,12 +13,17 @@ A SQL Server and MATLAB-based system for detecting fraudulent transactions using
 
 ## 🗂️ Directory Structure
 Banking-Fraud-Detection/
-├── database/ # SQL scripts and ER diagrams
-├── matlab/ # Data analysis and visualization scripts
-├── models_classification/ # Trained models (Git LFS tracked)
-│ └── ClassificationLearnerSession.mat
-├── docs/ # Project documentation
-└── README.md
+├── database/                  # SQL scripts and ER diagrams
+├── matlab/                    # Data analysis and visualization scripts
+│   ├── data_analysis.m        # Main analysis script
+│   ├── classification.m       # ML model training
+│   └── plots/                 # Generated visualizations
+├── models_classification/     # Trained models (Git LFS tracked)
+│   └── ClassificationLearnerSession.mat
+├── docs/                      # Project documentation
+│   ├── ER_diagram.pdf         # Database schema
+│   └── analysis_report.pdf    # Full findings
+└── README.md                  # Project overview
 
 ## 🛠️ Setup Instructions
 
