@@ -1,0 +1,103 @@
+% Step 1: Connect to the database
+conn = database('SQLEXPRESS_odbc', '', '');
+
+% Step 2: Query the Transactions_with_Fraud table
+queryTransactions = 'SELECT * FROM Transactions_with_Fraud';
+transactions = fetch(conn, queryTransactions);
+
+% Step 3: Query the MCC_Codes table
+queryMCC = 'SELECT mcc_id, description FROM MCC_Codes';
+mccData = fetch(conn, queryMCC);
+
+% Step 4: Join Transactions_with_Fraud with MCC_Codes using mcc and mcc_id
+transactions = outerjoin(transactions, mccData, ...
+    'LeftKeys', 'mcc', ...    % Key in Transactions_with_Fraud
+    'RightKeys', 'mcc_id', ... % Key in MCC_Codes
+    'MergeKeys', true);
+
+% Check if the column 'mcc_mcc_id' exists
+if ismember('mcc_mcc_id', transactions.Properties.VariableNames)
+    % Rename the column 'mcc_mcc_id' to 'mcc_id'
+    transactions.Properties.VariableNames{'mcc_mcc_id'} = 'mcc_id';
+    disp('Column "mcc_mcc_id" successfully renamed to "mcc_id".');
+else
+    disp('Column "mcc_mcc_id" does not exist.');
+end
+
+% Remove the 'errors' column
+transactions.errors = [];
+disp('Column "errors" removed successfully.');
+
+
+% Extract the 'amount' column as a cell array of strings
+amountText = transactions.amount;
+
+% Initialize an array to store the cleaned numeric values
+amountNumeric = zeros(size(amountText));
+
+% Loop through each entry to clean and convert
+for i = 1:length(amountText)
+    % Remove the $ sign and commas
+    cleanText = strrep(amountText{i}, '$', '');
+    cleanText = strrep(cleanText, ',', '');
+    
+    % Check if the value is in parentheses (negative)
+    if startsWith(cleanText, '(') && endsWith(cleanText, ')')
+        % Remove parentheses and convert to negative number
+        cleanText = extractBetween(cleanText, 2, strlength(cleanText) - 1); % Remove parentheses
+        amountNumeric(i) = -str2double(cleanText); % Convert to negative
+    else
+        % Convert the cleaned text to a positive number
+        amountNumeric(i) = str2double(cleanText);
+    end
+end
+
+% Replace the original 'amount' column with the cleaned numeric values
+transactions.amount = amountNumeric;
+
+% Initialize 'Income' and 'Expenses' columns with zeros - will be used futher for
+% better visualization
+transactions.Income = zeros(size(transactions.amount));
+transactions.Expenses = zeros(size(transactions.amount));
+
+% Assign values to 'Income' and 'Expenses'
+transactions.Income(transactions.amount > 0) = transactions.amount(transactions.amount > 0);
+transactions.Expenses(transactions.amount < 0) = transactions.amount(transactions.amount < 0);
+
+% Encode 'is_fraud' as 0 for 'No' and 1 for 'Yes'
+transactions.is_fraud = double(strcmp(transactions.is_fraud, 'Yes'));
+
+% Display the first few rows to verify
+disp('Encoded "is_fraud" column:');
+disp(head(transactions.is_fraud));
+
+% Verify unique values
+disp('Unique values in the encoded "is_fraud" column:');
+disp(unique(transactions.is_fraud)); % Should only display [0; 1]
+
+% Generate unique categories from the 'description' column
+uniqueCategories = unique(transactions.description);
+
+% Create a mapping for categories to numerical values
+categoryMap = containers.Map(uniqueCategories, 1:length(uniqueCategories));
+
+% Encode the 'description' column into numerical values
+transactions.category_encoded = zeros(height(transactions), 1); % Initialize the new column
+for i = 1:height(transactions)
+    transactions.category_encoded(i) = categoryMap(transactions.description{i});
+end
+
+% Display the first few rows to verify
+disp('First few rows with encoded categories:');
+disp(head(transactions(:, {'description', 'category_encoded'})));
+
+% Display unique categories and their corresponding encoded values
+disp('Category Encoding Map:');
+disp(categoryMap);
+
+% Display the first few rows to verify
+disp('First few rows with Income and Expenses columns:');
+disp(head(transactions));
+
+% Step 6: Close the database connection
+close(conn);
