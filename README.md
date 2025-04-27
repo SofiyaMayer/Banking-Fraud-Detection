@@ -19,6 +19,7 @@ A SQL Server and MATLAB-based system for detecting fraudulent transactions using
 - **Performance**: Optimized for imbalanced datasets (99.79% are non-fraudulent transactions)
 
 ## 🗂️ Directory Structure
+```
 Banking-Fraud-Detection/
 ├── database/                  # SQL scripts and ER diagrams
 ├── matlab/                    # Data analysis and visualization scripts
@@ -31,7 +32,7 @@ Banking-Fraud-Detection/
 │   ├── ER_diagram.pdf         # Database schema
 │   └── analysis_report.pdf    # Full findings
 └── README.md                  # Project overview
-
+```
 ## 🛠️ Setup Instructions
 
 ### Database Setup
