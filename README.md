@@ -9,7 +9,7 @@ A SQL Server and MATLAB-based system for detecting fraudulent transactions using
 - **Database Design**: ER diagram (Crow's Foot notation) for Users, Cards, Transactions, and Merchants
 - **Data Analysis**: MATLAB visualizations of fraud patterns (0.21% fraud rate)
 - **ML Models**: Decision Tree, Random Forest, RUSBoost with custom cost matrices
-- **Performance**: Optimized for imbalanced datasets (99.79% non-fraudulent transactions)
+- **Performance**: Optimized for imbalanced datasets (99.79% are non-fraudulent transactions)
 
 ## 🗂️ Directory Structure
 Banking-Fraud-Detection/
@@ -57,7 +57,7 @@ close(conn);
 ## 🔍 Key Findings
 
 ### Fraud Distribution
-![Fraud vs Non-Fraud Transactions](matlab/plots/fraud_pie_chart.png)  
+![Fraud vs Non-Fraud Transactions](graphs_visualization/hist_amounts.jpg)  
 *Figure 1: Only 0.21% of transactions were fraudulent (highly imbalanced dataset)*
 
 ### Transaction Patterns
