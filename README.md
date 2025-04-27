@@ -61,6 +61,7 @@ close(conn);
 *Figure 1: Only 0.21% of transactions were fraudulent (highly imbalanced dataset)*
 
 ![Amount distribution for 1000 Transactions](graphs_visualization/hist_amounts.jpg)
+
 *Figure 2: Amount distribution. Average amount is	$287.50*
 
 ### Transaction Patterns
