@@ -5,6 +5,13 @@
 
 A SQL Server and MATLAB-based system for detecting fraudulent transactions using machine learning.
 
+## 🔍 Table of Contents
+- [Features](#-key-features)
+- [Setup](#-setup-instructions)
+- [Findings](#-key-findings)
+- [Models](#-model-validation-performance)
+- [Deployment](#-deployment-recommendation)
+
 ## 📌 Key Features
 - **Database Design**: ER diagram (Crow's Foot notation) for Users, Cards, Transactions, and Merchants
 - **Data Analysis**: MATLAB visualizations of fraud patterns (0.21% fraud rate)
@@ -63,6 +70,14 @@ close(conn);
 ![Amount distribution for 1000 Transactions](graphs_visualization/hist_amounts.jpg)
 
 *Figure 2: Amount distribution. Average amount is	$287.50*
+
+![Fraud transactions categories](graphs_visualization/hist_fraud_categories.jpg)
+
+*Figure 3: Fraud transaction categories*
+
+![Non-Fraud transactions categories](graphs_visualization_hist_nonfraud_categories.jpg)
+
+*Figure 4: Non-Fraud transaction categories*
 
 ### Transaction Patterns
 | Pattern                  | Fraudulent Rate | Example Categories               |
