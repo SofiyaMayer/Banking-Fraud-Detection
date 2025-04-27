@@ -77,13 +77,13 @@ close(conn);
 | **RUSBoost**   | **90.9%** | **7.7%** | **2.34%** | **0.14** |
 
 ### Confusion Matrices
-![Decision Tree Validation](classification_models/tree_model/validation_matrix.jpg)  
+![Decision Tree Validation](models_classification/tree_model/validation_matrix.jpg)  
 *Figure 1: Decision Tree (Recall: 33.2%, FP Rate: 0.096%)*
 
-![Random Forest Validation](classification_models/random_forest/validation_matrix.jpg)  
+![Random Forest Validation](models_classification/random_forest/validation_matrix.jpg)  
 *Figure 2: Random Forest (Recall: 44.7%, FP Rate: 0.16%)*
 
-![RUSBoost Validation](classification_models/RUSBoosted_ensemble/validation_matrix.jpg)  
+![RUSBoost Validation](models_classification/RUSBoosted_ensemble/validation_matrix.jpg)  
 *Figure 3: RUSBoost (Recall: 90.9%, FP Rate: 2.34%)*
 
 ## 🚀 Deployment Recommendation
