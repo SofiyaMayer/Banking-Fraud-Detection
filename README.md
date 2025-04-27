@@ -60,6 +60,9 @@ close(conn);
 ![Fraud vs Non-Fraud Transactions](graphs_visualization/barplot_fraud_vs_nonfraud.jpg)  
 *Figure 1: Only 0.21% of transactions were fraudulent (highly imbalanced dataset)*
 
+![Amount distribution for 1000 Transactions](graphs_visualization/hist_amounts.jpg)
+*Figure 2: Amount distribution. Average amount is	$287.50*
+
 ### Transaction Patterns
 | Pattern                  | Fraudulent Rate | Example Categories               |
 |--------------------------|-----------------|-----------------------------------|
