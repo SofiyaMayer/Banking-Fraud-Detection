@@ -67,3 +67,12 @@ close(conn);
 | **Dark Web-Linked Cards**| 23.4%           | Stolen card credentials           |
 | **Chip Transactions**    | 1.8%            | Physical card present transactions|
 
+## 🎯 Fraud Detection Performance
+
+### Core Metrics
+```python
+               Fraud Detected  False Positives  $ Value Caught  $ Value Missed
+              --------------  ---------------  --------------  -------------
+Decision Tree       36.2%          1,214         $264,250       $465,712
+Random Forest       72.8%            893         $531,500       $198,462
+RUSBoost           *92.0%*          *1,507*     *$671,500*      *$58,462*
